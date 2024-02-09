@@ -1,20 +1,23 @@
-CC:=g++ -std=c++98
-CFLAGS:= -Wall -Werror -Wextra -g3
+CXX:=g++ -std=c++98
+CPPFLAGS:= -Wall -Werror -Wextra -g3
 RM:=rm -rf
 
 NAME:=phonebook
 
 SRC_PATH:=./
 
-SRC_FILES:=phonebook.cpp main.cpp
+SRC_FILES:= main.cpp phonebook.cpp contact.cpp
 
 SRC_FILES:= $(addprefix $(SRC_PATH)/,$(SRC_FILES))
-SRC_OBJECTS:= $(patsubst %.c,%.o,$(SRC_FILES))
+SRC_OBJECTS:= $(patsubst %.cpp,%.o,$(SRC_FILES))
 
 all: $(NAME)
 
+%.o: %.cpp
+	$(CXX) -c $< $(CPPFLAGS) -o $@
+
 $(NAME): $(SRC_OBJECTS)
-	@$(CC) $^ $(CFLAGS) -o $@
+	$(CXX) $^ $(CPPFLAGS) -o $@
 
 clean:
 	@$(RM) $(SRC_OBJECTS)
@@ -24,4 +27,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re%
+.PHONY: all clean fclean re

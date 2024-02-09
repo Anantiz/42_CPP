@@ -1,5 +1,9 @@
 #include "contact.hpp"
 
+Contact::Contact(){
+	;
+}
+
 Contact::Contact(std::string first_name, std::string last_name, \
 	std::string nickname, std::string phone_number, std::string darkest_secret)
 {
@@ -22,10 +26,29 @@ Contact&	Contact::operator=(const Contact &other)
 	this->_nickname = other._nickname;
 	this->_phone_number = other._phone_number;
 	this->_darkest_secret = other._darkest_secret;
+	return (*this);
 }
 
 // Wtf is canonic form for 	??
-Contact::~Contact()
-{
-
+Contact::~Contact(){
 };
+
+std::string	Contact::get_first_name(){
+	return (this->_first_name);
+}
+
+std::string	Contact::get_last_name(){
+	return (this->_last_name);
+}
+
+std::string	Contact::get_nickname(){
+	return (this->_nickname);
+}
+
+std::string	Contact::get_phone_number(){
+	return (this->_phone_number);
+}
+
+std::string	Contact::get_darkest_secret(){
+	return (this->_darkest_secret);
+}
