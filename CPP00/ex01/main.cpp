@@ -11,6 +11,8 @@ int	main()
 
 	while (1)
 	{
+		if (std::cin.eof())
+			break;
 		std::cout << "\033[4mEnter a command\033[0m: ";
 		if (!std::getline(std::cin, command))
 			break;

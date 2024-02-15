@@ -31,6 +31,8 @@ class Contact
 		Contact& operator=(const Contact &other);
 		~Contact();
 
+		void	print_contact();
+
 		// stupid getters
 		std::string	get_first_name();
 		std::string	get_last_name();

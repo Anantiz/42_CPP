@@ -1,6 +1,7 @@
 #include "phonebook.hpp"
 #include "contact.hpp"
 #include <limits>
+#include <string>
 
 PhoneBook::PhoneBook()
 {
@@ -34,15 +35,15 @@ void	PhoneBook::add_contact(Contact contact)
 	this->_contacts[this->_nb_contacts++ % 8] = contact;
 }
 
-// static bool	ft_is_numeric(std::string str)
-// {
-// 	for (size_t i = 0; i < str.length(); i++)
-// 	{
-// 		if (!std::isdigit(str[i]))
-// 			return (false);
-// 	}
-// 	return (true);
-// }
+static bool	ft_is_numeric(std::string str)
+{
+	for (size_t i = 0; i < str.length(); i++)
+	{
+		if (!std::isdigit(str[i]))
+			return (false);
+	}
+	return (true);
+}
 
 
 static bool	ft_is_alpha(std::string str)
@@ -62,70 +63,77 @@ static bool	ft_is_alpha(std::string str)
 void	PhoneBook::parse_contact()
 {
 	std::string		first_name;
-	// std::string		last_name;
-	// std::string		nickname;
-	// std::string		phone_number;
-	// std::string		darkest_secret;
+	std::string		last_name;
+	std::string		nickname;
+	std::string		phone_number;
+	std::string		darkest_secret;
 
-	bool loop = false;
-
-	do {
-		loop = false;
-		first_name.clear();
-		std::cout << "\033[4mEnter the first name\033[0m: ";
-		std::cin.ignore(4096, '\n');
-		if (!std::getline(std::cin, first_name)){
-			std::cout << "\033[91mError reading input\033[0m" << std::endl;
-			loop = true;
-		}
-		else if (first_name.empty() || ft_is_alpha(first_name) == false){
-			std::cout << "\033[96m\tInput must be only letters and non empty\033[0m" << std::endl;
-			loop = true;
-		}
+	std::cout << "Enter the first name: ";
+	if (!std::getline(std::cin, first_name))
+	{
+		std::cout << "\033[31m\nEOF, EXITING...\033[0m" << std::endl;
 		std::cin.clear();
-		std::cout << "Name is::" << first_name << "." << std::endl;
-	}while (loop);
-
-	// do {
-	// 	last_name.clear();
-	// 	loop = false;
-	// 	std::cout << "Enter the last name: ";
-	// 	std::cin >> last_name;
-	// 	if (last_name.empty() || ft_is_alpha(last_name) == false){
-	// 		loop = true;
-	// 		std::cout << "Input must be only letters and non empty" << std::endl;
-	// 	}
-	// } while (loop);
-
-	// do{
-	// 	nickname.clear();
-	// 	loop = false;
-	// 	std::cout << "Enter the nickname: ";
-	// 	std::getline(std::cin, nickname);
-	// 	std::cout << std::endl;
-	// 	if (nickname.empty()){
-	// 		loop = true;
-	// 		std::cout << "Input must be non empty" << std::endl;
-	// 	}
-	// } while (loop);
-
-	// do{
-	// 	loop = false;
-	// 	std::cout << "Enter the phone number: ";
-	// 	std::getline(std::cin, phone_number);
-	// 	std::cout << std::endl;
-	// 	if (nickname.empty() || ft_is_numeric(phone_number) == false){
-	// 		loop = true;
-	// 		std::cout << "Input must be only numbers and non empty" << std::endl;
-	// 	}
-	// } while (loop);
-
-	// do{
-	// 	std::cout << "Enter the darkest secret: ";
-	// 	std::getline(std::cin, darkest_secret);
-	// 	std::cout << std::endl;
-	// } while (darkest_secret.empty());
-	// this->add_contact(Contact(first_name, last_name, nickname, phone_number, darkest_secret));
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return ;
+	}
+	if (first_name.empty() || !ft_is_alpha(first_name))
+	{
+		std::cout << "Invalid input" << std::endl;
+		return ;
+	}
+	std::cout << "Enter the last name: ";
+	if (!std::getline(std::cin, last_name))
+	{
+		std::cout << "\033[31m\nEOF, EXITING...\033[0m" << std::endl;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return ;
+	}
+	if (last_name.empty() || !ft_is_alpha(last_name))
+	{
+		std::cout << "Invalid input" << std::endl;
+		return ;
+	}
+	std::cout << "Enter the nickname: ";
+	if (!std::getline(std::cin, nickname))
+	{
+		std::cout << "\033[31m\nEOF, EXITING...\033[0m" << std::endl;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return ;
+	}
+	if (nickname.empty())
+	{
+		std::cout << "Invalid input" << std::endl;
+		return ;
+	}
+	std::cout << "Enter the phone number: ";
+	if (!std::getline(std::cin, phone_number))
+	{
+		std::cout << "\033[31m\nEOF, EXITING...\033[0m" << std::endl;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return ;
+	}
+	if (phone_number.empty() || !ft_is_numeric(phone_number))
+	{
+		std::cout << "Invalid input" << std::endl;
+		return ;
+	}
+	std::cout << "Enter the darkest secret: ";
+	if (!std::getline(std::cin, darkest_secret))
+	{
+		std::cout << "\033[31m\nEOF, EXITING...\033[0m" << std::endl;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return ;
+	}
+	if (darkest_secret.empty())
+	{
+		std::cout << "Invalid input" << std::endl;
+		return ;
+	}
+	this->add_contact(Contact(first_name, last_name, nickname, phone_number, darkest_secret));
 }
 
 static std::string get_field(Contact& contact, int field)
@@ -157,7 +165,7 @@ void PhoneBook::print_phonebook()
 	std::cout << "     index|first name| last name|  nickname" << std::endl;
 	for (int i = 0; i < 8; i++)
 	{
-		std::cout << std::setw(9) << i << "|";
+		std::cout << std::setw(10) << i << "|";
 		for (int j = 0; j < 3; j++)
 		{
 			std::cout << std::setw(10);
@@ -174,5 +182,21 @@ void PhoneBook::print_phonebook()
 */
 void	PhoneBook::search_contact()
 {
+	std::string	index;
+
 	print_phonebook();
+	std::cout << "Enter the index of the contact: ";
+	if (!std::getline(std::cin, index))
+	{
+		std::cout << "\033[31m\nEOF, EXITING...\033[0m" << std::endl;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		return ;
+	}
+	if (index.size() != 1 || !ft_is_numeric(index) || (int)index[0] - 48 > this->_nb_contacts - 1 || (int)index[0] - 48 < 0)
+	{
+		std::cout << "Invalid input" << std::endl;
+		return ;
+	}
+	this->_contacts[(int)index[0] - 48].print_contact();
 }
