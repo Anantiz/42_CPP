@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 23:55:16 by aurban            #+#    #+#             */
-/*   Updated: 2024/02/20 13:38:53 by aurban           ###   ########.fr       */
+/*   Created: 2024/02/20 16:06:38 by aurban            #+#    #+#             */
+/*   Updated: 2024/02/20 16:16:05 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#pragma once
 #include <iostream>
 #include <string>
 
-int main()
+class Harl
 {
-	Zombie *z1 = newZombie(std::string("Harambe"));
-	z1->announce();
-	delete z1;
+private:
+	void debug( void );
+	void info( void );
+	void warning( void );
+	void error( void );
 
-	randomChump(std::string("Donald Trump"));
-	randomChump(std::string("Joe Biden"));
-	return (0);
-}
+public:
+
+	Harl();
+	Harl(Harl const &cpy);
+	Harl &operator=(Harl const &cpy);
+	~Harl();
+	void	complain( std::string level);
+};

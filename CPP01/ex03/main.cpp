@@ -5,22 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 23:55:16 by aurban            #+#    #+#             */
-/*   Updated: 2024/02/20 13:38:53 by aurban           ###   ########.fr       */
+/*   Created: 2024/02/20 14:50:42 by aurban            #+#    #+#             */
+/*   Updated: 2024/02/20 15:18:54 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <iostream>
-#include <string>
+#include "HumanA.hpp"
+#include "HumanB.hpp"
+#include "Weapon.hpp"
 
-int main()
+int	main()
 {
-	Zombie *z1 = newZombie(std::string("Harambe"));
-	z1->announce();
-	delete z1;
+	Weapon w1 = Weapon("Thermo-Nuclear Cluster Warhead");
 
-	randomChump(std::string("Donald Trump"));
-	randomChump(std::string("Joe Biden"));
-	return (0);
+	HumanA bob("Bob", w1);
+	bob.attack();
+	w1.setType("SlingShot");
+	bob.attack();
+
+	Weapon w2 = Weapon("Stone");
+	HumanB jim("Jim");
+	jim.setWeapon(w2);
+	jim.attack();
+	w2.setType("Paper");
+	jim.attack();
+
+	HumanB jim2("Jim the Second");
+	jim2.attack();
+	
+	return 0;
 }

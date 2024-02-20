@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 23:55:16 by aurban            #+#    #+#             */
-/*   Updated: 2024/02/20 13:38:53 by aurban           ###   ########.fr       */
+/*   Created: 2024/02/20 13:48:45 by aurban            #+#    #+#             */
+/*   Updated: 2024/02/20 15:04:46 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <iostream>
+#pragma once
+
 #include <string>
 
-int main()
+class Weapon
 {
-	Zombie *z1 = newZombie(std::string("Harambe"));
-	z1->announce();
-	delete z1;
+	private:
+		std::string _type;
 
-	randomChump(std::string("Donald Trump"));
-	randomChump(std::string("Joe Biden"));
-	return (0);
-}
+	public:
+		Weapon();
+		Weapon(Weapon const &cpy);
+		Weapon(std::string type);
+		~Weapon();
+		Weapon &operator=(Weapon const &cpy);
+
+		const std::string	&getType() const;
+		void				setType(std::string type);
+};

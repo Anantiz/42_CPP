@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 21:26:00 by aurban            #+#    #+#             */
-/*   Updated: 2024/02/15 23:55:25 by aurban           ###   ########.fr       */
+/*   Updated: 2024/02/20 14:01:26 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class Zombie
 		Zombie();
 		Zombie(std::string name);
 		~Zombie();
+		Zombie &operator=(Zombie const &cpy);
 
 		void announce();
 };

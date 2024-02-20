@@ -5,22 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 23:55:16 by aurban            #+#    #+#             */
-/*   Updated: 2024/02/20 13:38:53 by aurban           ###   ########.fr       */
+/*   Created: 2024/02/20 16:19:42 by aurban            #+#    #+#             */
+/*   Updated: 2024/02/20 16:46:57 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <iostream>
-#include <string>
+// NOT FUCKING DOABLE WITH A SWITCH, WTF IS EVEN THE SUBJECT ASKING ?????????????????????????
 
-int main()
+#include "Harl.hpp"
+
+int main(int ac, char *av[])
 {
-	Zombie *z1 = newZombie(std::string("Harambe"));
-	z1->announce();
-	delete z1;
+	Harl h;
 
-	randomChump(std::string("Donald Trump"));
-	randomChump(std::string("Joe Biden"));
-	return (0);
+	if (ac != 2)
+	{
+		std::cout << "Usage: \n\t" << "arg[0]" << " <lowest_level_to_display>" << std::endl;
+		return 1;
+	}
+
+	h.complain("DEBUG");
+	h.complain("INFO");
+	h.complain("WARNING");
+	h.complain("ERROR");
+	return 0;
 }

@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 23:55:16 by aurban            #+#    #+#             */
-/*   Updated: 2024/02/20 13:38:53 by aurban           ###   ########.fr       */
+/*   Created: 2024/02/20 14:24:58 by aurban            #+#    #+#             */
+/*   Updated: 2024/02/20 15:05:35 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <iostream>
+#pragma once
+
 #include <string>
+#include <iostream>
+#include "Weapon.hpp"
 
-int main()
+class HumanA
 {
-	Zombie *z1 = newZombie(std::string("Harambe"));
-	z1->announce();
-	delete z1;
+	private:
+		std::string _name;
+		Weapon &_weapon;
 
-	randomChump(std::string("Donald Trump"));
-	randomChump(std::string("Joe Biden"));
-	return (0);
-}
+	public:
+		HumanA(void);
+		HumanA(HumanA const &cpy);
+		HumanA(std::string name, Weapon &weapon);
+		~HumanA();
+		HumanA &operator=(HumanA const &cpy);
+
+		void attack();
+};

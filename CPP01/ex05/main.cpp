@@ -5,22 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 23:55:16 by aurban            #+#    #+#             */
-/*   Updated: 2024/02/20 13:38:53 by aurban           ###   ########.fr       */
+/*   Created: 2024/02/20 16:19:42 by aurban            #+#    #+#             */
+/*   Updated: 2024/02/20 16:22:04 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <iostream>
-#include <string>
+#include "Harl.hpp"
 
 int main()
 {
-	Zombie *z1 = newZombie(std::string("Harambe"));
-	z1->announce();
-	delete z1;
+	Harl h;
 
-	randomChump(std::string("Donald Trump"));
-	randomChump(std::string("Joe Biden"));
-	return (0);
+	h.complain("DEBUG");
+	h.complain("INFO");
+	h.complain("WARNING");
+	h.complain("ERROR");
+	h.complain("LOL");
+	return 0;
 }
