@@ -4,7 +4,7 @@ RM:=rm -rf
 
 NAME = ex02
 
-SRC_FILES = main.cpp
+SRC_FILES = main.cpp Fixed.cpp
 
 SRC_OBJECTS := $(patsubst %.cpp, %.o, $(SRC_FILES))
 

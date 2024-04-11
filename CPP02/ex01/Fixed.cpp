@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:43:02 by aurban            #+#    #+#             */
-/*   Updated: 2024/02/20 19:42:30 by aurban           ###   ########.fr       */
+/*   Updated: 2024/04/11 11:34:41 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ Fixed::Fixed(const int value)
 Fixed::Fixed(const float value)
 {
 	std::cout << "Float constructor called" << std::endl;
-	int	whole_part = std::roundf(value);
-	int decimal_part = (int)(value - std::roundf(value)) & 0b11111111;
+
+	int		whole_part = roundf(value);
+	int		decimal_part = (value - whole_part) * std::pow(2, _bits);
+
 	this->_value = (whole_part << _bits) + decimal_part;
 }
 
@@ -49,12 +51,10 @@ Fixed &Fixed::operator=(const Fixed &src)
 	return *this;
 }
 
-Fixed &Fixed::operator<<(const Fixed &src)
+std::ostream& operator<<(std::ostream& os,const Fixed& n)
 {
-	int whole_part = src.getRawBits() >> src._bits;
-	int decimal_part = src.getRawBits() & 0b11111111;
-
-	return *this;
+	os << n.toFloat();
+	return os;
 }
 
 int Fixed::getRawBits(void) const
@@ -68,3 +68,17 @@ void Fixed::setRawBits(int const raw)
 	std::cout << "setRawBits member function called" << std::endl;
 	_value = raw;
 }
+
+float Fixed::toFloat(void) const
+{
+	float	whole_part = _value >> _bits;
+	float	decimal_part = _value & 0b11111111;
+
+	return whole_part + (decimal_part / std::pow(2, _bits));
+}
+
+int Fixed::toInt(void) const
+{
+	return _value >> _bits;
+}
+
