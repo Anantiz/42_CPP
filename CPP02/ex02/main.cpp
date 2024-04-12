@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 11:09:52 by aurban            #+#    #+#             */
-/*   Updated: 2024/04/11 11:37:08 by aurban           ###   ########.fr       */
+/*   Updated: 2024/04/12 10:15:32 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ int main( void ) {
 	std::cout << Fixed::min( a, b ) << std::endl;
 
 	std::cout << a + b << std::endl;
+	std::cout << "\na: " << a << "b: " << b << std::endl;
+	std::cout << "a > b: " << (a > b) << std::endl;
+	std::cout << "a < b: " << (a < b) << std::endl;
 
 	return 0;
 }
