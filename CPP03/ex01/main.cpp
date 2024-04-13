@@ -1,5 +1,6 @@
 #include <iostream>
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int	main(void)
 {
@@ -9,11 +10,10 @@ int	main(void)
 	robot.attack("Miguel");
 	robot2.takeDamage(robot.getDamage());
 	robot2.beRepaired(1);
-	robot2.takeDamage(robot.getDamage());
 	robot2.beRepaired(100);
-	robot2.takeDamage(robot.getDamage());
-	robot2.takeDamage(robot.getDamage());
-	robot2.attack("Carl");
-	robot2.takeDamage(robot.getDamage());
 
+	ScavTrap	robot3("Scav");
+
+	robot3.attack("Carl");
+	robot3.guardGate();
 }

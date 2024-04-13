@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 16:27:06 by aurban            #+#    #+#             */
-/*   Updated: 2024/04/13 08:52:53 by aurban           ###   ########.fr       */
+/*   Updated: 2024/04/13 09:07:31 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 
 class ClapTrap
 {
-private:
+
+protected:
 
 	std::string		_name;
 	unsigned int	_hitPoints;
@@ -30,6 +31,7 @@ private:
 public:
 
 	ClapTrap(std::string name);
+	ClapTrap(std::string name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage);
 	ClapTrap(const ClapTrap &cpy);
 	~ClapTrap();
 

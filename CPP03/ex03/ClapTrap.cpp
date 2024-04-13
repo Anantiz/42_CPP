@@ -1,7 +1,18 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() : _name(std::string("Default")), _hitPoints(10), _energyPoints(10), _attackDamage(0){std::cout << "ClapTrap " << this->_name << " is born!" << std::endl;};
-ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0){std::cout << "ClapTrap " << this->_name << " is born!" << std::endl;};
+ClapTrap::ClapTrap() : _name(std::string("Default")), _hitPoints(10), _energyPoints(10), _attackDamage(0){
+	std::cout << "ClapTrap " << this->_name << " is born!" << std::endl;
+
+};
+ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0){
+	std::cout << "ClapTrap " << this->_name << " is born!" << std::endl;
+};
+
+ClapTrap::ClapTrap(std::string name, unsigned int hitPoints, unsigned int energyPoints, unsigned int attackDamage)
+: _name(name), _hitPoints(hitPoints), _energyPoints(energyPoints), _attackDamage(attackDamage){
+	std::cout << "ClapTrap " << this->_name << " is born!" << std::endl;
+};
+
 ClapTrap::ClapTrap(ClapTrap const &cpy) : _name(cpy._name), _hitPoints(cpy._hitPoints), _energyPoints(cpy._energyPoints), _attackDamage(cpy._attackDamage){std::cout << "ClapTrap " << this->_name << " is born!" << std::endl;};
 ClapTrap::~ClapTrap(){std::cout << "ClapTrap " << this->_name << " Vanished !" << std::endl;};
 
@@ -57,8 +68,7 @@ void ClapTrap::beRepaired(unsigned int amount){
 		return;
 	}
 
-	unsigned int	missing_health = 10 - _hitPoints;
-	unsigned int	used_amount = fmin(missing_health, fmin(amount, _energyPoints));
+	unsigned int	used_amount = fmin(_hitPoints, fmin(amount, _energyPoints));
 
 	_hitPoints += used_amount;
 	_energyPoints -= used_amount;
