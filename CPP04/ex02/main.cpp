@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/13 10:17:26 by aurban            #+#    #+#             */
-/*   Updated: 2024/04/13 10:33:27 by aurban           ###   ########.fr       */
+/*   Created: 2024/04/13 11:00:21 by aurban            #+#    #+#             */
+/*   Updated: 2024/04/13 11:34:05 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Animal.hpp"
 #include "Dog.hpp"
+#include "Cat.hpp"
+#include "Wrong.hpp"
 
-Dog::Dog() : Animal("Dog"){
-	std::cout << "\033[32m" << "Dog constructor called" << "\033[0m" << std::endl;
-};
+int main()
+{
+	// Cannot Compile
+	// Animal	d = Dog();
 
-Dog::~Dog(){
-	std::cout << "\033[32m" << "Dog destructor called" << "\033[0m" << std::endl;
-};
-
-void	Dog::makeSound() const {
-	std::cout << "\033[32m" << "Woof woof" << "\033[0m" << std::endl;
-};
+	// Can Compile
+	Dog		d = Dog();
+}

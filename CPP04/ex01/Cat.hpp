@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/13 10:17:26 by aurban            #+#    #+#             */
-/*   Updated: 2024/04/13 10:33:27 by aurban           ###   ########.fr       */
+/*   Created: 2024/04/13 10:19:13 by aurban            #+#    #+#             */
+/*   Updated: 2024/04/13 11:13:50 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#pragma once
 
-Dog::Dog() : Animal("Dog"){
-	std::cout << "\033[32m" << "Dog constructor called" << "\033[0m" << std::endl;
-};
+#include "Animal.hpp"
+#include "Brain.hpp"
 
-Dog::~Dog(){
-	std::cout << "\033[32m" << "Dog destructor called" << "\033[0m" << std::endl;
-};
+class Cat : public Animal
+{
+private:
 
-void	Dog::makeSound() const {
-	std::cout << "\033[32m" << "Woof woof" << "\033[0m" << std::endl;
+	Brain	*_brain;
+
+public:
+
+	Cat();
+	Cat(const Cat &copy);
+	~Cat();
+
+	Cat	&operator=(const Cat &copy);
+
+	void makeSound() const;
+
+	std::string getIdea(int i) const ;
+	void setIdea(int i, std::string idea);
 };

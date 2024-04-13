@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/13 10:17:26 by aurban            #+#    #+#             */
-/*   Updated: 2024/04/13 10:33:27 by aurban           ###   ########.fr       */
+/*   Created: 2024/04/13 10:19:32 by aurban            #+#    #+#             */
+/*   Updated: 2024/04/13 10:56:43 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#pragma once
 
-Dog::Dog() : Animal("Dog"){
-	std::cout << "\033[32m" << "Dog constructor called" << "\033[0m" << std::endl;
-};
+#include <iostream>
+#include <string>
 
-Dog::~Dog(){
-	std::cout << "\033[32m" << "Dog destructor called" << "\033[0m" << std::endl;
-};
+class Animal
+{
+protected:
 
-void	Dog::makeSound() const {
-	std::cout << "\033[32m" << "Woof woof" << "\033[0m" << std::endl;
+	std::string _type;
+
+
+public:
+
+	Animal();
+	Animal(std::string type);
+	Animal(const Animal &copy);
+
+	virtual ~Animal();
+	virtual Animal &operator=(const Animal &copy);
+
+	std::string getType() const;
+	virtual void makeSound() const;
 };

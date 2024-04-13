@@ -1,10 +1,10 @@
 CXX:=g++ -std=c++98
-CPPFLAGS:= -Wall -Werror -Wextra -Wshadow -g3
+CPPFLAGS:= -Wall -Werror -Wextra -Wshadow -g3 -fsanitize=address
 RM:=rm -rf
 
-NAME = ex00
+NAME = ex01
 
-SRC_FILES = main.cpp Animal.cpp Dog.cpp Cat.cpp Wrong.cpp
+SRC_FILES = main.cpp Animal.cpp Dog.cpp Cat.cpp Wrong.cpp Brain.cpp
 
 SRC_OBJECTS := $(patsubst %.cpp, %.o, $(SRC_FILES))
 
