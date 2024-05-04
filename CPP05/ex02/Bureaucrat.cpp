@@ -50,3 +50,26 @@ std::ostream& operator<<(std::ostream& os,const Bureaucrat& bureaucrat)
 	os << bureaucrat.getName() << " Bureaucrat is grade " << bureaucrat.getGrade();
 	return os;
 }
+
+void Bureaucrat::signForm(AForm &form) const
+{
+	if (form.getStatus())
+		std::cout << _name << " signed " << form.getName() << std::endl;
+	else
+	{
+		std::cout << _name << " could not sign " << form.getName() \
+		<< " because grade to low." << std::endl;
+		throw GradeTooLowException();
+	}
+}
+
+void Bureaucrat::executeForm(AForm &form) const
+{
+	if (form.getStatus() && _grade < form.getGexec())
+		std::cout << _name << " executed " << form.getName() << std::endl;
+	else
+	{
+		std::cout << _name << " could not execute " << form.getName() << std::endl;
+		throw GradeTooLowException();
+	}
+}

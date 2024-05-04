@@ -6,40 +6,36 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 00:58:09 by aurban            #+#    #+#             */
-/*   Updated: 2024/05/04 15:37:32 by aurban           ###   ########.fr       */
+/*   Updated: 2024/05/04 17:37:41 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <iostream>
 
 int	main()
 {
-	Bureaucrat	john("John", 50);
+	Bureaucrat		DTrumpJunior("DTrumpJunior", 1);
+	Bureaucrat		Biden("Biden", 150);
 
-	Bureaucrat	john2(john);
+	Form			ligma("ligma", 1, 1);
+	Form			sugondeez("sugondeez", 1, 1);
+	Form			sugondeez2(sugondeez);
 
-	john.incrementGrade();
-
-	std::cout << "John  grade: " << john.getGrade() << std::endl;
-	std::cout << "John2 grade: " << john2.getGrade() << std::endl;
-
-	try {
-		Bureaucrat	fucker("Fucker", 200);
-	}catch (const Bureaucrat::GradeTooLowException& e) {
-        std::cout << e.what() << std::endl;
-    }catch (const Bureaucrat::GradeTooHighException& e) {
-        std::cout << e.what() << std::endl;
-    }
-
-	Bureaucrat fucker2("Jess-Uschris", 1);
-	try {
-		fucker2.incrementGrade();
-	}catch (const Bureaucrat::GradeTooHighException &e)	{
-        std::cout << e.what() << std::endl;
+	std::cout << ligma << std::endl;
+	try{
+		ligma.beSigned(DTrumpJunior);
+	}catch (const Form::GradeTooLowException & e){
+		std::cout << e.what() << std::endl;
 	}
 
-	std::cout << fucker2 << std::endl;
+	std::cout << sugondeez << std::endl;
+	try{
+		sugondeez.beSigned(Biden);
+	}catch (const Form::GradeTooLowException & e){
+		std::cout << e.what() << std::endl;
+	}
 
 	return 0;
 }

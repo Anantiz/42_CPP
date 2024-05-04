@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 00:40:22 by aurban            #+#    #+#             */
-/*   Updated: 2024/05/04 15:46:34 by aurban           ###   ########.fr       */
+/*   Updated: 2024/05/04 17:16:54 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 #include <iostream>
 #include <string>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
 	private:
 
-		const std::string	_name;
+		std::string const	_name;
 		int 				_grade;
 
 		Bureaucrat() {} // Not allowed, it makes no sense to construct without a name
@@ -50,7 +53,8 @@ class Bureaucrat
 				_GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW { return ("Grade too low");}
 		};
 
+		void signForm( Form &form) const;
 };
 
-std::ostream& operator<<(std::ostream& os,const Bureaucrat& right);
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& right);
 

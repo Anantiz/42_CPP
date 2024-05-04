@@ -1,40 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/04 00:40:22 by aurban            #+#    #+#             */
-/*   Updated: 2024/05/04 15:46:34 by aurban           ###   ########.fr       */
+/*   Created: 2024/05/04 15:38:32 by aurban            #+#    #+#             */
+/*   Updated: 2024/05/04 22:08:58 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <iostream>
 #include <string>
+#include <iostream>
+#include "Bureaucrat.hpp"
 
-class Bureaucrat
+class Bureaucrat;
+
+class AForm
 {
 	private:
 
 		const std::string	_name;
-		int 				_grade;
+		const int			_gradeSign;
+		const int			_gradeExec;
+		bool				_status;
 
-		Bureaucrat() {} // Not allowed, it makes no sense to construct without a name
-		Bureaucrat &operator=(const Bureaucrat &right); // Not allowed, cannot reassign _name
+		virtual AForm &operator=(const AForm &right); // Not allowed, can't copy _name
+		
+	protected:
+
+		AForm(); // Not allowed
 
 	public:
 
-		Bureaucrat(std::string name, int grade);
-		Bureaucrat(const Bureaucrat &right);
-		~Bureaucrat();
+		AForm(std::string name, int gsign, int gexec);
+		AForm(const AForm &right);
+		virtual ~AForm(); // Pure virtual destructor
 
-		std::string getName() const;
-		int getGrade() const;
-		void incrementGrade();
-		void decrementGrade();
+		virtual const std::string &getName() const;
+		virtual int		getGexec() const;
+		virtual int		getGsign() const;
+		virtual bool	getStatus() const;
+
+		inline void		gradeCheck(int current, int required) const;
 
 		class GradeTooHighException : std::exception
 		{
@@ -50,7 +60,8 @@ class Bureaucrat
 				_GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW { return ("Grade too low");}
 		};
 
+		virtual void beSigned(const Bureaucrat &bureaucrat);
+		virtual void beExecuted(const Bureaucrat &executor) = 0;
 };
 
-std::ostream& operator<<(std::ostream& os,const Bureaucrat& right);
-
+std::ostream&	operator<<(std::ostream &os, const AForm &f);
