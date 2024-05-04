@@ -6,56 +6,12 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 17:10:41 by aurban            #+#    #+#             */
-/*   Updated: 2024/04/13 18:43:01 by aurban           ###   ########.fr       */
+/*   Updated: 2024/04/16 17:46:30 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
-
-ICharacter::ICharacter(){} // Not allowed
-
-std::string const &ICharacter::getName() const {return _name;}
-
-void ICharacter::equip(AMateria* m) {
-	int i;
-	for (i = 0; i < 4; i++)
-	{
-		if (!_inventory[i]) {
-			_inventory[i] = m;
-			break;
-		}
-		else
-		{
-			std::cout << "Slot " << i << " is already occupied by: " << _inventory[i]->getType() << std::endl;
-
-		}
-
-	}
-	if (i == 4)
-		std::cout << "Inventory full" << std::endl;
-	else
-		std::cout << "Equipped " << m->getType() << std::endl;
-}
-
-void ICharacter::unequip(int idx) {
-	if (idx < 0 || idx > 3){
-		std::cout << "Invalid index" << std::endl;
-		return;
-	}
-	_inventory[idx] = NULL;
-}
-
-void ICharacter::use(int idx, ICharacter& target) {
-	if (idx < 0 || idx > 3){
-		std::cout << "Invalid index" << std::endl;
-		return;
-	}
-	if (_inventory[idx])
-		_inventory[idx]->use(target);
-	else
-		std::cout << "Empty slot" << std::endl;
-}
 
 /*
 
@@ -72,8 +28,14 @@ Character::Character(std::string const & name) : ICharacter() {
 Character::Character(Character const & src) {*this = src;}
 
 Character::~Character() {
+	std::cout << "Character " << _name << " destroyed" << std::endl;
+	std::cout << "\t(Deleting inventory, do not re-delete the items if they had an other pointer "<<
+	"in memory, items existing in 2 different inventory will create a double free() too, not my fault)" << std::endl;
+
 	for (int i = 0; i < 4; i++)
-		delete _inventory[i];
+		if (_inventory[i]){
+			delete _inventory[i];
+		}
 }
 
 /* Deep copy*/
@@ -87,14 +49,53 @@ Character	&Character::operator=(Character const &src) {
 std::string const & Character::getName() const {return _name;}
 
 void Character::equip(AMateria* m) {
-	ICharacter::equip(m);
+	std::cout << this->_name << ": ";
+
+	if (!m) {
+		std::cout << "Invalid materia" << std::endl;
+		return;
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		if (_inventory[i] == m) {
+			std::cout << "Already equipped" << std::endl;
+			return;
+		}
+	}
+
+	int i;
+	for (i = 0; i < 4; i++)
+	{
+		if (!_inventory[i]) {
+			_inventory[i] = m;
+			break;
+		}
+	}
+	if (i == 4)
+		std::cout << "\tFAILURE Inventory full" << std::endl;
+	else
+		std::cout << "\tSUCCES Equipped " << m->getType() << std::endl;
 }
 
-/* Currently causes a leak */
-void Character::unequip(int idx) {ICharacter::unequip(idx);}
+void Character::unequip(int idx) {
+	std::cout << this->_name << ": ";
+	if (idx < 0 || idx > 3){
+		std::cout << "Invalid index" << std::endl;
+		return;
+	}
+	std::cout << "Unequipped " << _inventory[idx]->getType() << std::endl;
+	_inventory[idx] = NULL;
+}
 
 void Character::use(int idx, ICharacter& target) {
 	std::cout << this->_name << ": ";
-	ICharacter::use(idx, target);
+	if (idx < 0 || idx > 3){
+		std::cout << "Invalid index" << std::endl;
+		return;
+	}
+	if (_inventory[idx])
+		_inventory[idx]->use(target);
+	else
+		std::cout << "Empty slot" << std::endl;
 }
 

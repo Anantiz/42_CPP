@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:02:46 by aurban            #+#    #+#             */
-/*   Updated: 2024/04/13 18:33:43 by aurban           ###   ########.fr       */
+/*   Updated: 2024/04/16 17:49:52 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,24 @@ MateriaSource	&MateriaSource::operator=(MateriaSource const &src) {
 }
 
 void MateriaSource::learnMateria(AMateria* m) {
+	if (!m){
+		std::cout << "Invalid materia" << std::endl;
+		return;
+	}
+	// Check if the materia is already in the inventory
+	for (int i = 0; i < 4; i++)
+		if (_inventory[i] == m) {
+			std::cout << "Materia already learned" << std::endl;
+			return;
+		}
+
 	for (int i = 0; i < 4; i++)
 		if (!_inventory[i]) {
 			_inventory[i] = m;
+			std::cout << "Materia learned" << std::endl;
 			return;
 		}
+	std::cout << "Inventory full" << std::endl;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type) {

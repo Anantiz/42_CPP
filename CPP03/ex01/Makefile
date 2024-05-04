@@ -1,4 +1,4 @@
-CXX:=g++ -std=c++98
+CXX:=c++ -std=c++98
 CPPFLAGS:= -Wall -Werror -Wextra -g3
 RM:=rm -rf
 

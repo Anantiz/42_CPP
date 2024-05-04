@@ -16,6 +16,8 @@ public:
 
 	FragTrap(std::string name);
 	~FragTrap();
+	FragTrap(FragTrap const &right);
+	FragTrap	&operator=(FragTrap const &right);
 
 	void highFivesGuys(void);
 

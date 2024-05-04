@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 10:17:35 by aurban            #+#    #+#             */
-/*   Updated: 2024/04/13 11:14:06 by aurban           ###   ########.fr       */
+/*   Updated: 2024/04/16 17:05:41 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ private:
 public:
 
 	Dog();
-	Dog(const Dog &copy);
 	~Dog();
 
+	Dog(const Dog &copy);
 	Dog	&operator=(const Dog &copy);
 
 	void makeSound() const;

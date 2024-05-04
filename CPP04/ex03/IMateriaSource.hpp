@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 17:23:42 by aurban            #+#    #+#             */
-/*   Updated: 2024/04/13 18:03:45 by aurban           ###   ########.fr       */
+/*   Updated: 2024/04/16 18:09:03 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ class IMateriaSource
 public:
 
 	virtual ~IMateriaSource() {}
-
 	virtual void learnMateria(AMateria*) = 0;
 	virtual AMateria* createMateria(std::string const & type) = 0;
 };

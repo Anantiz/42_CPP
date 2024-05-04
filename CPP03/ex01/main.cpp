@@ -12,8 +12,14 @@ int	main(void)
 	robot2.beRepaired(1);
 	robot2.beRepaired(100);
 
-	ScavTrap	robot3("Scav");
+	std::cout << "\nCopy constructor and assignment operator tests\n" << std::endl;
 
+
+	ScavTrap	robot3("Scav");
 	robot3.attack("Carl");
 	robot3.guardGate();
+
+	ScavTrap	robot3_cpy = robot3;
+	robot3_cpy.guardGate();
+
 }

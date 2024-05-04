@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 10:42:23 by aurban            #+#    #+#             */
-/*   Updated: 2024/04/13 10:48:27 by aurban           ###   ########.fr       */
+/*   Updated: 2024/04/16 17:05:54 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ public:
 
 	WrongCat();
 	~WrongCat();
+
+	//Canonical:
+	WrongCat(const WrongCat &cpy);
+	WrongCat &operator=(const WrongCat &cpy);
 
 	void makeSound() const;
 };

@@ -20,6 +20,8 @@ public:
 
 	DiamondTrap(std::string name);
 	~DiamondTrap();
+	DiamondTrap(DiamondTrap const &right);
+	DiamondTrap	&operator=(DiamondTrap const &right);
 
 	void whoAmI(void);
 };

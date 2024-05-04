@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 10:43:26 by aurban            #+#    #+#             */
-/*   Updated: 2024/04/13 10:48:57 by aurban           ###   ########.fr       */
+/*   Updated: 2024/04/16 17:08:30 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,13 @@ WrongCat::~WrongCat(){
 
 void WrongCat::makeSound() const {
 	std::cout << "\033[91m" << "WRONG Meow" << "\033[0m"  << std::endl;
+}
+
+WrongCat::WrongCat(const WrongCat &copy) : WrongAnimal(copy){};
+
+WrongCat	&WrongCat::operator=(const WrongCat &right){
+	if (this == &right)
+		return *this;
+	WrongAnimal::operator=(right);
+	return *this;
 }

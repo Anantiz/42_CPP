@@ -16,4 +16,12 @@ int	main(void)
 	robot2.attack("Carl");
 	robot2.takeDamage(robot.getDamage());
 
+	std::cout << "\nCopy constructor and assignment operator tests\n" << std::endl;
+
+	// Copy constructor test
+	ClapTrap	robot3(robot2);
+	robot3.attack("Carl");
+	// Assignment operator test
+	ClapTrap	robot4("Miguel");
+	robot4 = robot3;
 }
