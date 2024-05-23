@@ -15,99 +15,49 @@ ScalarConverter	&ScalarConverter::operator=(const ScalarConverter &right)
 	return *this;
 }
 
-// Checks if there is only one word
-static bool validate_input(std::string str)
+static void	print_char(char n, bool possible)
 {
-	int i=0;
-	while (str[i] && isspace(str[i]))
-		i++;
-	while (str[i] && !isspace(str[i]))
-		i++;
-	while (str[i] && isspace(str[i]))
-		i++;
-	if (str[i])
-		return (false);
-	return (true);
+	std::cout << "char:   ";
+	if (!possible)
+		std::cout << "Imposible";
+	else if (!isprint(n))
+		std::cout << "Non displayable";
+	else
+		std::cout << "\'" << n << "\'";
+	std::cout << std::endl;
 }
 
-double	convert_input(std::string str)
+static void	print_int(int n, bool possible)
 {
-	if (str == "+inf")
-		return (std::numeric_limits<double>::infinity());
-	if (str == "-inf")
-		return (-std::numeric_limits<double>::infinity());
-
-	if (str == "+inff")
-		return (std::numeric_limits<float>::infinity());
-	if (str == "-inff")
-		return (-std::numeric_limits<float>::infinity());
-
-	if (str == "nan" || str == "nanf")
-		return (std::numeric_limits<double>::quiet_NaN());
-
-	return (atof(str.c_str()));
+	std::cout << "int:    ";
+	if (!possible)
+		std::cout << "Imposible";
+	else
+		std::cout << n;
+	std::cout << std::endl;
 }
 
-static void	print_char(double n)
-{
-	if (std::isnan(n))
-	{
-		std::cout << "char: " << "Impossible" << std::endl;
-		return ;
-	}
-	else
-		n = floor(n);
-
-
-	if (n < 0 || n > 126)
-		std::cout << "char:   " << "Impossible" << std::endl;
-	else if (!isprint(  static_cast<char>(n)))
-		std::cout << "char:   " << "Non displayable" << std::endl;
-	else
-		std::cout << "char:   \'" << static_cast<char>(n) << "\'" << std::endl;
-}
-
-static void	print_int(double n)
-{
-	if (std::isnan(n))
-	{
-		std::cout << "int:    " << "Impossible" << std::endl;
-		return ;
-	}
-	else
-		n = floor(n);
-
-
-	if (n < -2147483648 || n > 2147483647)
-		std::cout << "int:    " << "Impossible" << std::endl;
-	else
-		std::cout << "int:    " << static_cast<int>(n) << std::endl;
-
-}
-
-static void print_float(std::string str, double n2)
+static void print_float(float n, bool possible)
 {
 	std::string	f = "f";
-	float		n;
-	(void)str;
 
-	if (std::isnan(n2) || n2 < __FLT_MIN__ || n2 > __FLT_MAX__ )
-	{
-		f = "";
-		n = static_cast<float>(n2);
-	}
+	std::cout << "float:  ";
+	if (!possible)
+		std::cout << "Imposible";
 	else
-	{
-		n = static_cast<float>(n2);
-		// Actually implement a way to keep this gfloat accurate
-	}
+		std::cout << std::fixed << std::setprecision(1) << n << f;
+	std::cout << std::endl;
 
-	std::cout << std::fixed << std::setprecision(1) << "float:  " << n << f << std::endl;
 }
 
-static void print_double(double n)
+static void print_double(double n, bool possible)
 {
-	std::cout << std::fixed << std::setprecision(1) << "double: " << n << std::endl;
+	std::cout << "double: ";
+	if (!possible)
+		std::cout << "Imposible";
+	else
+		std::cout << std::fixed << std::setprecision(1) << n;
+	std::cout << std::endl;
 }
 
 
@@ -120,16 +70,27 @@ Output in stdin the representation of a value (Given as the input string) in dif
 */
 bool ScalarConverter::convert(std::string str)
 {
-	double	n;
+	double	nd;
+	float	nf;
+	int		ni;
+	bool	valid[] = {false, false, false, false};
 
 	if (!validate_input(str))
 		return (false);
 
-	n = convert_input(str);
+	ni = convert_input_ni(str, valid[0]);
+	if (!valid[0])
+	{
+		nf = convert_input_nf(str, valid[1]);
+		if (!valid[1])
+			nd = convert_input_nd(str, valid[2]);
+	}
+	init_others(ni, nf, nd, valid);
 
-	print_char(n);
-	print_int(n);
-	print_float(str, n);
-	print_double(n);
+	// A char is an int, do be annoying
+	print_char(static_cast<char>(ni), valid[3]);
+	print_int(ni, valid[0]);
+	print_float(nf, valid[1]);
+	print_double(nd, valid[2]);
 	return (true);
 }

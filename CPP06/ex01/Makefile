@@ -1,23 +1,23 @@
 CXX:=c++ -std=c++98
-CPPFLAGS:= -Wall -Werror -Wextra -g3
+CPPFLAGS:= -Wall -Werror -Wextra -g3 -Wshadow
 RM:=rm -rf
 
 NAME = a.out
 
-SRC_FILES = main.cpp
+SRC_FILES = main.cpp Serializer.cpp Data.cpp
 
 SRC_OBJECTS := $(patsubst %.cpp, %.o, $(SRC_FILES))
 
 all: test fclean
-
-test: $(NAME)
-	@echo "" && ./$(NAME)
 
 %.o: %.cpp
 	$(CXX) -c $< $(CPPFLAGS) -o $@
 
 $(NAME): $(SRC_OBJECTS)
 	$(CXX) $(CPPFLAGS) -o $@ $^
+
+test: $(NAME)
+	./$(NAME)
 
 clean:
 	@$(RM) $(SRC_OBJECTS)
