@@ -4,7 +4,7 @@ int main( void )
 {
 	int			list_a[] = {1, 2, 3};
 	float		list_b[] = {0.0, 0.1, 0.2, 0.3, 0.4};
-	std::string	list_c[] = {"Hey", "mom", "<3", "!"};
+	std::string	list_c[] = {"Hi", "mom", "<3", "!"};
 
 	std::cout << "Int list: " << std::endl;
 	InternationalThermonuclearExperimentalReactor<int>(list_a, 3, test<int>);
