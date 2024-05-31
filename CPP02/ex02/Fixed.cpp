@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 18:43:02 by aurban            #+#    #+#             */
-/*   Updated: 2024/04/12 10:17:13 by aurban           ###   ########.fr       */
+/*   Updated: 2024/05/31 02:18:20 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,18 +127,19 @@ Fixed &Fixed::operator++()
 	return *this;
 }
 
-Fixed &Fixed::operator--()
-{
-	this->_value--;
-	return *this;
-}
-
 Fixed Fixed::operator++(int)
 {
 	Fixed tmp(*this);
 	++(*this);
 	return tmp;
 }
+
+Fixed &Fixed::operator--()
+{
+	this->_value--;
+	return *this;
+}
+
 
 Fixed Fixed::operator--(int)
 {

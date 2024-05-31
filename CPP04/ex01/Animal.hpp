@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 10:19:32 by aurban            #+#    #+#             */
-/*   Updated: 2024/04/13 10:56:43 by aurban           ###   ########.fr       */
+/*   Updated: 2024/05/31 02:13:49 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ class Animal
 protected:
 
 	std::string _type;
-
 
 public:
 
