@@ -1,32 +1,49 @@
 #pragma once
 
 #include <stack>
+#include <deque>
 
-#define TTT template <typename T>
+// Since Stack is actually not a container
+// We Have to instantiate it using a container (default is deque)
+// So it looks weird but that's cpp.
 
-TTT
-class MutantStack : public std::stack<T>
+template <typename T, class Container = std::deque<T> >
+class MutantStack: public std::stack<T, Container>
 {
+private:
+
 public:
 
-	class iterator
+	MutantStack() {};
+	~MutantStack() {};
+
+	MutantStack(const MutantStack& other)
 	{
-		private:
+		*this = other;
+	}
+	MutantStack& operator=(const MutantStack& other)
+	{
+		this->c = other.c;
+		return *this;
+	}
 
-			T *_ptr;
+	// Because we want to call MutantStack<int>::iterator
+	// and not MutantStack<int>::Container::iterator
+	typedef typename Container::iterator iterator;
+	// We write `typename` to tell the compiler that `Container::iterator`
+	// is a type and not a static member of a `Container` class
 
-		public:
 
-			typename container::iterator &begin()
-			{
-				_ptr = this->c.begin();
-				return *this;
-			}
+	// Here we return the iterator of the container used by the stack
+	iterator begin()
+	{
+		return this->c.begin();
+	}
 
-			typename container::iterator &end()
-			{
-				_ptr = this->c.end();
-				return *this;
-			}
-	};
+	// Guess what this does :)
+	iterator end()
+	{
+		return this->c.end();
+	}
+
 };

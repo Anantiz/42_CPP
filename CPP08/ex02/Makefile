@@ -4,7 +4,7 @@ RM:=rm -rf
 
 NAME = a.out
 
-SRC_FILES = main.cpp MutabtStack.cpp
+SRC_FILES = main.cpp
 
 SRC_OBJECTS := $(patsubst %.cpp, %.o, $(SRC_FILES))
 
