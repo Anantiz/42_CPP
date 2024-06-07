@@ -48,6 +48,9 @@
 		"ranges": "cpp",
 		"span": "cpp",
 		"streambuf": "cpp",
-		"typeinfo": "cpp"
+		"typeinfo": "cpp",
+		"cinttypes": "cpp",
+		"list": "cpp",
+		"chrono": "cpp"
 	}
 }
