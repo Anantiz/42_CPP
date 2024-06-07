@@ -2,9 +2,9 @@ CXX:=c++ -std=c++98
 CPPFLAGS:= -Wall -Werror -Wextra -g3 -Wshadow
 RM:=rm -rf
 
-NAME = a.out
+NAME = btc
 
-SRC_FILES = main.cpp
+SRC_FILES = main.cpp BitcoinExchange.cpp
 
 SRC_OBJECTS := $(patsubst %.cpp, %.o, $(SRC_FILES))
 
