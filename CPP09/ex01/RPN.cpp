@@ -38,8 +38,6 @@ ssize_t	RPN::compute( void )
 		{
 			if (was)
 				throw std::invalid_argument(SUPER_LONG_STRING);
-			if (_stack.size() == 2)
-				throw std::invalid_argument("Invalid expression, too many numbers");
 			_stack.push(c - '0'); was = true;
 		}
 		else

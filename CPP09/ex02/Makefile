@@ -2,7 +2,7 @@ CXX:=c++ -std=c++98
 CPPFLAGS:= -Wall -Werror -Wextra -g3 -Wshadow
 RM:=rm -rf
 
-NAME = PmergeMe
+NAME = PMergeMe
 
 SRC_FILES = main.cpp PmergeMe.cpp
 

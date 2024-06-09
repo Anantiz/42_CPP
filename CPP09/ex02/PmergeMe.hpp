@@ -5,11 +5,12 @@
 #include <vector>
 #include <list>
 #include <algorithm>
-#include <chrono>
+#include <ctime>
 
-typedef std::chrono::high_resolution_clock::time_point	t_time_point;
+// Actually 20 because we compare mid to the thresold
+#define THRESHOLD 10
 
-void PmergeMe(std::vector<size_t> v);
-void PmergeMe(std::list<size_t> v);
+void PmergeMe(std::vector<size_t> &v);
+void PmergeMe(std::list<size_t> &l);
 
-extern constexpr size_t g_treshold = 100 / 2;
+typedef std::list<size_t>::iterator t_list_iter;
